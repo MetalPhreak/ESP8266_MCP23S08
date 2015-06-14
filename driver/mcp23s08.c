@@ -65,7 +65,7 @@ void mcp23s08_init(){
 
 void mcp23s08_REG_SET(uint8 ctrl_reg, uint8 port, uint8 value){
 	
-	uint8 cmd = port | 0x41; //0b0100[Address][WRITE]
+	uint8 cmd = port | 0x40; //0b0100[Address][WRITE]
 
 	spi_transaction(SPI_DEV, 8, cmd, 8, ctrl_reg, 8, value, 0, 0);	
 	
@@ -84,7 +84,7 @@ void mcp23s08_REG_SET(uint8 ctrl_reg, uint8 port, uint8 value){
 
 uint8 mcp23s08_REG_GET(uint8 ctrl_reg, uint8 port){
 	
-	uint8 cmd = port | 0x40; //0b0100[Address][READ]
+	uint8 cmd = port | 0x41; //0b0100[Address][READ]
 
 	return spi_transaction(SPI_DEV, 8, cmd, 8, ctrl_reg, 0, 0, 8, 0);	
 
